@@ -1,5 +1,5 @@
 "use client";
-
+/* Componente da seção Sobre */
 import { motion } from "framer-motion";
 import Image from "next/image";
 
