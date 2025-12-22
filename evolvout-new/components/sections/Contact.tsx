@@ -67,6 +67,7 @@ export function Contact({ className }: BaseComponentProps) {
       title: "Telefone",
       content: "+244 945 367 487",
       description: "Ligue para nós em horário comercial",
+      whatsappLink: "https://wa.me/244945367487",
     },
 
     {
