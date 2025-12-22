@@ -7,6 +7,7 @@ import { Hero, Features, Testimonials, Stats, About, FAQ, Contact, Footer } from
 import { LiquidEther } from "@/components/effects";
 import { LIQUID_ETHER_CONFIG } from "@/config/liquidEther";
 import { COLORS } from "@/constants/theme";
+import { Analytics } from "@vercel/analytics/next"
 
 // Dynamic import para evitar problemas de SSR com WebGL
 const LiquidEtherDynamic = dynamic(() => Promise.resolve(LiquidEther), {
