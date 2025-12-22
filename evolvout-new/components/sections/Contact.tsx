@@ -156,6 +156,21 @@ export function Contact({ className }: BaseComponentProps) {
             <div className="contact-info-grid h-full">
               {contactInfo.map((info, index) => {
                 const Icon = info.icon;
+                const CardElement = (
+                  <Card className="contact-info-card">
+                    <CardContent className="contact-info-card-content">
+                      <div className="contact-info-icon-wrapper">
+                        <Icon className="contact-info-icon" />
+                      </div>
+                      <div className="contact-info-text">
+                        <h3 className="contact-info-title">{info.title}</h3>
+                        <p className="contact-info-content">{info.content}</p>
+                        <p className="contact-info-description">{info.description}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+
                 return (
                   <motion.div
                     key={index}
@@ -164,18 +179,18 @@ export function Contact({ className }: BaseComponentProps) {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <Card className="contact-info-card">
-                      <CardContent className="contact-info-card-content">
-                        <div className="contact-info-icon-wrapper">
-                          <Icon className="contact-info-icon" />
-                        </div>
-                        <div className="contact-info-text">
-                          <h3 className="contact-info-title">{info.title}</h3>
-                          <p className="contact-info-content">{info.content}</p>
-                          <p className="contact-info-description">{info.description}</p>
-                        </div>
-                      </CardContent>
-                    </Card>
+                    {info.whatsappLink ? (
+                      <a
+                        href={info.whatsappLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block cursor-pointer transition-all duration-300 hover:scale-105"
+                      >
+                        {CardElement}
+                      </a>
+                    ) : (
+                      CardElement
+                    )}
                   </motion.div>
                 );
               })}
