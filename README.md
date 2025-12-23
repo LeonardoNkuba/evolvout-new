@@ -61,7 +61,7 @@
 git clone https://github.com/seu-usuario/evolvout.git
 
 # Entre no diretório
-cd evolvout-landing
+cd evolvout-new 
 
 # Abra no VS Code
 code .
