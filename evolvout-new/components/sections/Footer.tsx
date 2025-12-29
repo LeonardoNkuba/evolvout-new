@@ -33,14 +33,14 @@ export function Footer({ className }: BaseComponentProps) {
     ],
     resources: [
       { label: "Blog", href: "#blog" },
-      { label: "Documentação", href: "#docs" },
+      { label: "Documentação", href: "/docs" },
       { label: "FAQ", href: "#faq" },
-      { label: "Suporte", href: "#support" },
+      { label: "Suporte", href: "/support" },
     ],
     legal: [
-      { label: "Privacidade", href: "#privacy" },
-      { label: "Termos", href: "#terms" },
-      { label: "Cookies", href: "#cookies" },
+      { label: "Privacidade", href: "/privacy" },
+      { label: "Termos", href: "/terms" },
+      { label: "Cookies", href: "/cookies" },
     ],
   };
 

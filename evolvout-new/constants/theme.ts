@@ -32,6 +32,7 @@ export const COLORS = {
   lightText: "#e0e0e0",
   mediumGray: "#2a2e3d",
   darkGray: "#1a1f2e",
+  navyBlue: "#001f3f", // Navy blue for backgrounds
 
 
   // Gradientes

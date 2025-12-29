@@ -1,10 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
 import { cn } from "@/lib/utils";
-import { StarBorder } from "@/components/effects/StarBorder";
+// StarBorder removed from header to keep only logo and menu icon
 import { NAVIGATION_ITEMS, CTA_BUTTON_TEXT } from "@/constants/navigation";
 import { COLORS } from "@/constants/theme";
 import { HEADER_ANIMATION, NAV_ITEM_ANIMATION, NAV_ITEM_TRANSITION, HOVER_SCALE } from "@/config/animations";
@@ -24,6 +25,15 @@ type HeaderProps = BaseComponentProps;
  * @param className - Classes CSS adicionais
  */
 export function Header({ className }: HeaderProps) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleNavClick = (href: string) => {
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    setIsMenuOpen(false);
+  };
 
   return (
     <motion.header
@@ -106,42 +116,73 @@ export function Header({ className }: HeaderProps) {
 
         {/* CTA Button */}
         <div className="flex items-center gap-1 sm:gap-2 shrink-0 ml-6 sm:ml-8 lg:ml-12 xl:ml-16">
-          {/* CTA Button with Star Border - Visible em mobile e desktop */}
-          <StarBorder
-            as="a"
-            href="#contact"
-            onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-              e.preventDefault();
-              const target = document.querySelector('#contact');
-              if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
-            }}
-            color={COLORS.white}
-            speed="5s"
-            thickness={1}
-            className={cn(
-              "flex",
-              "transition-all duration-200",
-              "hover:scale-105 cursor-pointer shrink-0",
-              "no-underline"
-            )}
-            style={{
-              background: COLORS.gradient.button,
-            }}
-            onMouseEnter={(e: React.MouseEvent<HTMLElement>) => {
-              e.currentTarget.style.background = COLORS.gradient.buttonHover;
-            }}
-            onMouseLeave={(e: React.MouseEvent<HTMLElement>) => {
-              e.currentTarget.style.background = COLORS.gradient.button;
-            }}
+          {/* Hamburger Menu - Mobile */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="lg:hidden flex flex-col items-center justify-center gap-1.5 w-6 h-6 cursor-pointer group"
+            aria-label="Toggle menu"
+            aria-expanded={isMenuOpen}
           >
-            <span className="text-white font-semibold text-xs sm:text-sm whitespace-nowrap px-3 sm:px-4 py-1.5 sm:py-2 block">
-              {CTA_BUTTON_TEXT}
-            </span>
-          </StarBorder>
+            <span className={cn(
+              "w-5 h-0.5 bg-white transition-all duration-300 block",
+              isMenuOpen && "rotate-45 translate-y-2"
+            )} />
+            <span className={cn(
+              "w-5 h-0.5 bg-white transition-all duration-300 block",
+              isMenuOpen && "opacity-0"
+            )} />
+            <span className={cn(
+              "w-5 h-0.5 bg-white transition-all duration-300 block",
+              isMenuOpen && "-rotate-45 -translate-y-2"
+            )} />
+          </button>
+
+          {/* CTA removido: header agora mostra apenas logo e ícone do menu (mobile) */}
         </div>
       </nav>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.2 }}
+          className={cn(
+            "absolute top-full left-0 right-0 mt-2",
+            "lg:hidden",
+            "backdrop-blur-2xl bg-black/40 border border-white/20",
+            "rounded-2xl",
+            "shadow-[0_8px_32px_0_rgba(0,0,0,0.5),0_0_0_1px_rgba(255,255,255,0.05)]",
+            "overflow-hidden"
+          )}
+        >
+          <nav className="flex flex-col divide-y divide-white/10">
+            {NAVIGATION_ITEMS.map((item, index) => (
+              <motion.a
+                key={item.href}
+                href={item.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(item.href);
+                }}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.05 }}
+                className={cn(
+                  "px-4 py-3",
+                  "text-white/70 hover:text-white",
+                  "text-sm font-medium",
+                  "transition-colors duration-200 ease-out",
+                  "cursor-pointer"
+                )}
+              >
+                {item.label}
+              </motion.a>
+            ))}
+          </nav>
+        </motion.div>
+      )}
 
     </motion.header>
   );

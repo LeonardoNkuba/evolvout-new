@@ -26,24 +26,48 @@ export function Contact({ className }: BaseComponentProps) {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitMessage, setSubmitMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus('idle');
     
-    // Simular envio
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    
-    console.log("Form submitted:", formData);
-    setIsSubmitting(false);
-    
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setSubmitMessage('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+        // Clear success message after 5 seconds
+        setTimeout(() => setSubmitStatus('idle'), 5000);
+      } else {
+        setSubmitStatus('error');
+        setSubmitMessage(data.error || 'Erro ao enviar mensagem. Tente novamente.');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      setSubmitMessage('Erro ao enviar mensagem. Verifique sua conexão e tente novamente.');
+      console.error('Form submission error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -285,6 +309,16 @@ export function Contact({ className }: BaseComponentProps) {
                   </div>
 
                   <div className="contact-form-footer">
+                    {submitStatus === 'success' && (
+                      <div className="mb-4 p-4 rounded-lg bg-green-500/20 border border-green-500/50">
+                        <p className="text-green-400 font-medium">{submitMessage}</p>
+                      </div>
+                    )}
+                    {submitStatus === 'error' && (
+                      <div className="mb-4 p-4 rounded-lg bg-red-500/20 border border-red-500/50">
+                        <p className="text-red-400 font-medium">{submitMessage}</p>
+                      </div>
+                    )}
                     <StarBorder
                       as="button"
                       type="submit"
