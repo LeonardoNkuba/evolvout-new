@@ -126,6 +126,27 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       ],
     },
   },
+  {
+    id: "okuti-angola",
+    title: "Okuti Angola - Descubra a Aventura",
+    shortDescription: "Plataforma digital de turismo e exploração de Angola",
+    description: "Web app dedicado a promover o turismo nacional, destacando roteiros de aventura, cultura e as belezas naturais das províncias de Angola.",
+    image: "/okuti.jpg", // Renomeie a imagem do logo para este nome
+    category: "web",
+    tags: ["Next.js", "Maps Integration", "Tourism", "UI Design"],
+    link: "https://okuti-angola.vercel.app/",
+    details: {
+      challenge:
+        "O turismo em Angola carecia de uma plataforma digital moderna que centralizasse informações sobre roteiros de aventura e 'joias escondidas' do país de forma visualmente atraente.",
+      solution:
+        "Desenvolvimento de uma interface imersiva e rápida hospedada na Vercel, focada em contar histórias visuais e facilitar a descoberta de destinos locais.",
+      results: [
+        "Catálogo digital de destinos em expansão",
+        "Interface otimizada para descoberta visual",
+        "Promoção da identidade cultural e biodiversidade angolana",
+      ],
+    },
+  },
 ];
 
 export const PORTFOLIO_CATEGORIES = [
