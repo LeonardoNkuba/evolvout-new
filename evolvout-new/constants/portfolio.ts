@@ -131,7 +131,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     title: "Okuti Angola - Descubra a Aventura",
     shortDescription: "Plataforma digital de turismo e exploração de Angola",
     description: "Web app dedicado a promover o turismo nacional, destacando roteiros de aventura, cultura e as belezas naturais das províncias de Angola.",
-    image: "/okuti.jpg", // Renomeie a imagem do logo para este nome
+    image: "/okuti.jpeg", // Renomeie a imagem do logo para este nome
     category: "web",
     tags: ["Next.js", "Maps Integration", "Tourism", "UI Design"],
     link: "https://okuti-angola.vercel.app/",
