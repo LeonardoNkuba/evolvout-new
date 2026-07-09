@@ -147,6 +147,28 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       ],
     },
   },
+  {
+    id: "angola-startup",
+    title: "Angola Startup - Ecossistema Empreendedor",
+    shortDescription: "Portal de conteúdos e visibilidade para startups angolanas",
+    description:
+      "Plataforma web focada em fortalecer o ecossistema de inovação em Angola, conectando empreendedores, oportunidades e conteúdos estratégicos.",
+    image: "/angohub.png",
+    category: "web",
+    tags: ["Next.js", "Branding", "Startup Ecosystem", "Content Platform"],
+    link: "https://angola-startup.vercel.app/",
+    details: {
+      challenge:
+        "Dar visibilidade a iniciativas empreendedoras locais e organizar informações úteis para quem está construindo uma startup em Angola.",
+      solution:
+        "Desenvolvimento de uma presença digital moderna e responsiva, com foco em comunicação clara, autoridade da marca e fácil acesso aos conteúdos.",
+      results: [
+        "Maior presença digital para o projeto Angola Startup",
+        "Canal centralizado para apresentar iniciativas e conteúdos",
+        "Experiência otimizada para navegação em dispositivos móveis",
+      ],
+    },
+  },
 ];
 
 export const PORTFOLIO_CATEGORIES = [
