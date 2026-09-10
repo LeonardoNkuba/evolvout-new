@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { cn } from '@/lib/utils';
 import { COLORS } from '@/constants/theme';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
@@ -35,14 +34,14 @@ export default function PrivacyPage() {
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-white mt-8 mb-4">1. Introdução</h2>
               <p className="text-gray-300 leading-relaxed mb-4">
-                A EvolvOut ("nós", "nosso" ou "EvolvOut") é responsável pela proteção dos seus dados pessoais e está comprometida com a transparência na forma como os utilizamos.
+                A EvolvOut (&quot;nós&quot;, &quot;nosso&quot; ou &quot;EvolvOut&quot;) é responsável pela proteção dos seus dados pessoais e está comprometida com a transparência na forma como os utilizamos.
               </p>
             </section>
 
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-white mt-8 mb-4">2. Informações que Recolhemos</h2>
               <p className="text-gray-300 leading-relaxed mb-4">
-                Recolhemos informações que você nos fornece voluntariamente através de formulários de contato, incluindo:
+                Recolhemos informações fornecidas voluntariamente através dos formulários de contacto, incluindo:
               </p>
               <ul className="list-disc pl-6 text-gray-300 space-y-2 mb-4">
                 <li>Nome completo</li>
@@ -58,7 +57,7 @@ export default function PrivacyPage() {
                 Os dados pessoais que recolhemos são utilizados para:
               </p>
               <ul className="list-disc pl-6 text-gray-300 space-y-2 mb-4">
-                <li>Responder às suas enquiries e solicitações</li>
+                <li>Responder às suas questões e solicitações</li>
                 <li>Enviar comunicações relacionadas com os nossos serviços</li>
                 <li>Melhorar a experiência do utilizador</li>
                 <li>Cumprir com obrigações legais</li>
@@ -88,7 +87,7 @@ export default function PrivacyPage() {
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-white mt-8 mb-4">6. Contacto</h2>
               <p className="text-gray-300 leading-relaxed mb-4">
-                Para questões sobre esta política de privacidade, entre em contato conosco em: <br />
+                Para questões sobre esta política de privacidade, entre em contacto connosco em: <br />
                 <span className="text-green-500 font-semibold">contacto@evolvout.com</span>
               </p>
             </section>

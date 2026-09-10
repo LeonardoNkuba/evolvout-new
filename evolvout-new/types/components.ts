@@ -3,8 +3,6 @@
  * Tipos compartilhados entre componentes
  */
 
-import { ReactNode } from "react";
-
 export interface BaseComponentProps {
   className?: string;
 }

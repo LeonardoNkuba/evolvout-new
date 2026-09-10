@@ -14,22 +14,22 @@ export interface Service {
 export const SERVICES: Service[] = [
   {
     title: "Marketing Digital",
-    description: "Estratégias que conectam sua marca ao público certo",
+    description: "Estratégia, conteúdo e campanhas para aproximar a sua marca do público certo",
     icon: Megaphone,
   },
   {
     title: "Desenvolvimento Web",
-    description: "Sites modernos e funcionais que impulsionam seu negócio",
+    description: "Websites e aplicações pensados para vender, informar e simplificar operações",
     icon: Code,
   },
   {
     title: "Design & Audiovisual",
-    description: "Identidades visuais que contam histórias memoráveis",
+    description: "Identidade visual, conteúdo e peças audiovisuais consistentes com a sua marca",
     icon: Palette,
   },
   {
-    title: "Hardware & Software",
-    description: "Soluções tecnológicas completas para sua empresa",
+    title: "Tecnologia Empresarial",
+    description: "Configuração de equipamentos, software e suporte para o trabalho diário da sua equipa",
     icon: Cpu,
   },
 ] as const;

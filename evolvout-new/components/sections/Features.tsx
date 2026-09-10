@@ -16,7 +16,7 @@ import { ServiceCard } from "./ServiceCard";
  * Seção de serviços da empresa destacando:
  * - Conteúdo textual à esquerda
  * - Imagem de robô à direita
- * - Cards de serviços profissionais com ElectricBorder
+ * - Cards de serviços profissionais
  * - Animações suaves
  * 
  * @param className - Classes CSS adicionais
@@ -26,7 +26,7 @@ export function Features({ className }: BaseComponentProps) {
         <section
             id="services"
             className={cn(
-                "relative min-h-screen flex items-center justify-center",
+                "relative flex items-center justify-center",
                 "px-4 sm:px-6 lg:px-8",
                 "pt-8 sm:pt-10 lg:pt-12 pb-12 sm:pb-16 lg:pb-20",
                 "pointer-events-auto",
@@ -91,9 +91,8 @@ export function Features({ className }: BaseComponentProps) {
                             transition={{ duration: 0.6, delay: 0.4 }}
                             className="text-base sm:text-lg lg:text-xl text-white/70 max-w-xl leading-relaxed"
                         >
-                            Criamos experiências reais e práticas para negócios que desejam crescer
-                            e se adaptar ao novo mundo digital. Transformamos ideias em soluções
-                            digitais inteligentes.
+                            Combinamos estratégia, design e desenvolvimento para criar soluções
+                            úteis, fáceis de utilizar e alinhadas aos objectivos de cada negócio.
                         </motion.p>
 
                         {/* Services Cards Grid - Altura uniforme garantida */}
@@ -105,6 +104,11 @@ export function Features({ className }: BaseComponentProps) {
                                     index={index}
                                 />
                             ))}
+                        </div>
+                        <div>
+                            <a href="#contact" className="inline-flex rounded-full bg-emerald-400 px-7 py-3 font-semibold text-slate-950 transition-colors hover:bg-emerald-300">
+                                Solicitar orçamento
+                            </a>
                         </div>
                     </motion.div>
 
@@ -122,12 +126,11 @@ export function Features({ className }: BaseComponentProps) {
                             className="relative w-full flex items-center justify-center"
                         >
                             <Image
-                                src="/verde.png"
+                                src="/verde.webp"
                                 alt="Inovação e tecnologia para o crescimento digital angolano"
                                 width={800}
                                 height={800}
                                 className="w-full h-auto max-h-[600px] lg:max-h-[700px] object-contain"
-                                priority
                             />
                         </motion.div>
                     </motion.div>

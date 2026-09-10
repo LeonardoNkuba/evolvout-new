@@ -1,20 +1,20 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Send, Mail, Phone, MapPin, Clock, MessageSquare } from "lucide-react";
+import { track } from "@vercel/analytics";
+import { Send, Mail, Phone, Clock, MessageSquare } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { COLORS } from "@/constants/theme";
 import { SectionBadge } from "@/components/ui";
 import { Card, CardContent } from "@/components/ui/card";
 import type { BaseComponentProps } from "@/types/components";
-import { StarBorder } from "@/components/effects";
 import "./Contact.css";
 
 /**
  * Contact Section Component
  * 
- * Seção de contato com design sofisticado e moderno
+ * Secção de contacto
  * 
  * @param className - Classes CSS adicionais
  */
@@ -24,6 +24,7 @@ export function Contact({ className }: BaseComponentProps) {
     email: "",
     subject: "",
     message: "",
+    website: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -46,14 +47,16 @@ export function Contact({ className }: BaseComponentProps) {
       const data = await response.json();
 
       if (response.ok) {
+        track('contact_form_success');
         setSubmitStatus('success');
-        setSubmitMessage('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+        setSubmitMessage('Mensagem enviada com sucesso! Entraremos em contacto em breve.');
         // Reset form
         setFormData({
           name: "",
           email: "",
           subject: "",
           message: "",
+          website: "",
         });
         // Clear success message after 5 seconds
         setTimeout(() => setSubmitStatus('idle'), 5000);
@@ -106,7 +109,7 @@ export function Contact({ className }: BaseComponentProps) {
     <section
       id="contact"
       className={cn(
-        "relative min-h-screen flex items-center justify-center",
+        "relative flex items-center justify-center",
         "px-4 sm:px-6 lg:px-8",
         "pt-16 sm:pt-30 lg:pt-44 pb-18 sm:pb-40 lg:pb-44",
         "pointer-events-auto overflow-hidden",
@@ -142,7 +145,7 @@ export function Contact({ className }: BaseComponentProps) {
         >
           {/* Badge */}
           <div className="mb-5 flex justify-center">
-            <SectionBadge label="Entre em Contato" />
+            <SectionBadge label="Entre em Contacto" />
           </div>
           
           {/* Title */}
@@ -237,11 +240,15 @@ export function Contact({ className }: BaseComponentProps) {
                   </div>
                   <h3 className="contact-form-title">Envie sua mensagem</h3>
                   <p className="contact-form-subtitle">
-                    Preencha o formulário abaixo e entraremos em contato em breve
+                    Preencha o formulário abaixo e entraremos em contacto em breve
                   </p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="contact-form">
+                  <div className="hidden" aria-hidden="true">
+                    <label htmlFor="website">Website</label>
+                    <input id="website" name="website" value={formData.website} onChange={handleChange} tabIndex={-1} autoComplete="off" />
+                  </div>
                   <div className="contact-form-grid">
                     <div className="contact-form-group">
                       <label htmlFor="name" className="contact-form-label">
@@ -254,6 +261,7 @@ export function Contact({ className }: BaseComponentProps) {
                         value={formData.name}
                         onChange={handleChange}
                         required
+                        maxLength={100}
                         className="contact-form-input"
                         placeholder="Seu nome completo"
                       />
@@ -270,6 +278,7 @@ export function Contact({ className }: BaseComponentProps) {
                         value={formData.email}
                         onChange={handleChange}
                         required
+                        maxLength={254}
                         className="contact-form-input"
                         placeholder="seu@email.com"
                       />
@@ -286,8 +295,9 @@ export function Contact({ className }: BaseComponentProps) {
                         value={formData.subject}
                         onChange={handleChange}
                         required
+                        maxLength={150}
                         className="contact-form-input"
-                        placeholder="Sobre o que você gostaria de falar?"
+                        placeholder="Sobre o que gostaria de falar?"
                       />
                     </div>
 
@@ -301,6 +311,7 @@ export function Contact({ className }: BaseComponentProps) {
                         value={formData.message}
                         onChange={handleChange}
                         required
+                        maxLength={3000}
                         rows={6}
                         className="contact-form-input contact-form-textarea"
                         placeholder="Conte-nos mais sobre seu projeto..."
@@ -308,7 +319,7 @@ export function Contact({ className }: BaseComponentProps) {
                     </div>
                   </div>
 
-                  <div className="contact-form-footer">
+                  <div className="contact-form-footer" aria-live="polite">
                     {submitStatus === 'success' && (
                       <div className="mb-4 p-4 rounded-lg bg-green-500/20 border border-green-500/50">
                         <p className="text-green-400 font-medium">{submitMessage}</p>
@@ -319,14 +330,10 @@ export function Contact({ className }: BaseComponentProps) {
                         <p className="text-red-400 font-medium">{submitMessage}</p>
                       </div>
                     )}
-                    <StarBorder
-                      as="button"
+                    <button
                       type="submit"
                       className="contact-form-submit"
                       disabled={isSubmitting}
-                      color={COLORS.white}
-                      speed="5s"
-                      thickness={1}
                     >
                       <span className="text-white font-semibold text-xs sm:text-sm whitespace-nowrap px-4 sm:px-5 py-2 sm:py-2.5 flex items-center justify-center gap-2">
                         {isSubmitting ? (
@@ -341,7 +348,7 @@ export function Contact({ className }: BaseComponentProps) {
                           </>
                         )}
                       </span>
-                    </StarBorder>
+                    </button>
                   </div>
                 </form>
               </CardContent>

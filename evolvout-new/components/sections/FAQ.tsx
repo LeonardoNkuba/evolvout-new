@@ -30,7 +30,7 @@ export function FAQ({ className }: BaseComponentProps) {
     <section
       id="faq"
       className={cn(
-        "relative min-h-screen flex items-center justify-center",
+        "relative flex items-center justify-center",
         "px-4 sm:px-6 lg:px-8",
         "pt-8 sm:pt-10 lg:pt-12 pb-12 sm:pb-16 lg:pb-20",
         "pointer-events-auto overflow-hidden",

@@ -5,7 +5,6 @@ import Image from "next/image";
 import {Mail, Phone, MapPin, Linkedin, Facebook, Instagram, ArrowRight} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { COLORS } from "@/constants/theme";
-import { NAVIGATION_ITEMS } from "@/constants/navigation";
 import type { BaseComponentProps } from "@/types/components";
 import "./Footer.css";
 
@@ -29,10 +28,8 @@ export function Footer({ className }: BaseComponentProps) {
       { label: "Sobre Nós", href: "#about" },
       { label: "Serviços", href: "#services" },
       { label: "Portfólio", href: "#portfolio" },
-      { label: "Carreiras", href: "#careers" },
     ],
     resources: [
-      { label: "Blog", href: "#blog" },
       { label: "Documentação", href: "/docs" },
       { label: "FAQ", href: "#faq" },
       { label: "Suporte", href: "/support" },
@@ -51,9 +48,9 @@ export function Footer({ className }: BaseComponentProps) {
   ];
 
   const contactInfo = [
-    { icon: Mail, text: "contacto@evovlvout.com", href: "contacto@evovlvout.com" },
-    { icon: Phone, text: "+244  945 367 487", href: "https://wa.me/244951738432" },
-    { icon: MapPin, text: "Luanda - Angola", href: "#" },
+    { icon: Mail, text: "contacto@evolvout.com", href: "mailto:contacto@evolvout.com" },
+    { icon: Phone, text: "+244 945 367 487", href: "https://wa.me/244945367487" },
+    { icon: MapPin, text: "Luanda - Angola", href: "https://www.google.com/maps/search/?api=1&query=Luanda%2C%20Angola" },
   ];
 
   return (
@@ -91,16 +88,15 @@ export function Footer({ className }: BaseComponentProps) {
           >
             <div className="footer-brand-header">
               <Image
-                src="/logo-startup.PNG"
-                alt="StartupTech Logo"
+                src="/logo.PNG"
+                alt="EvolvOut"
                 width={120}
                 height={40}
                 className="h-8 sm:h-10 md:h-12 lg:h-14 xl:h-16 w-auto object-contain"
-                priority
               />
             </div>
             <p className="footer-brand-description">
-              Transformando ideias em realidade através de tecnologia de ponta e inovação constante.
+              Tecnologia, design e estratégia para ajudar negócios angolanos a crescer no digital.
             </p>
             
             {/* Contact Info */}
@@ -231,38 +227,6 @@ export function Footer({ className }: BaseComponentProps) {
             </ul>
           </motion.div>
 
-          {/* Right Column - Newsletter */}
-          <motion.div
-            className="footer-newsletter"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-          >
-            <h4 className="footer-newsletter-title">Newsletter</h4>
-            <p className="footer-newsletter-description">
-              Receba as últimas novidades e atualizações diretamente no seu email.
-            </p>
-            <form className="footer-newsletter-form">
-              <div className="footer-newsletter-input-wrapper">
-                <Mail className="footer-newsletter-input-icon" />
-                <input
-                  type="email"
-                  placeholder="Seu email"
-                  className="footer-newsletter-input"
-                  required
-                />
-              </div>
-              <motion.button
-                type="submit"
-                className="footer-newsletter-button"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <ArrowRight className="size-4" />
-              </motion.button>
-            </form>
-          </motion.div>
         </div>
 
         {/* Divider */}
@@ -294,7 +258,8 @@ export function Footer({ className }: BaseComponentProps) {
                 <motion.a
                   key={index}
                   href={social.href}
-                  target= "_blanck"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="footer-social-link"
                   aria-label={social.label}
                   whileHover={{ scale: 1.2, rotate: 5 }}

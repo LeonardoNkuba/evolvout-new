@@ -12,7 +12,7 @@ export interface FAQItem {
 export const FAQ_ITEMS: FAQItem[] = [
   {
     question: "Como funciona o processo de desenvolvimento de soluções digitais?",
-    answer: "Transformamos ideias em soluções digitais inteligentes através de um processo claro: começamos entendendo sua visão e objetivos, depois planejamos a melhor estratégia digital, criamos a solução com excelência técnica, e acompanhamos os resultados para otimização contínua. Todo projeto é adaptado à realidade do mercado angolano.",
+    answer: "O processo começa com uma conversa sobre o desafio e os objectivos do negócio. Depois, definimos a estratégia, construímos a solução e acompanhamos a sua evolução após a entrega.",
     category: "Processo"
   },
   {
@@ -22,7 +22,7 @@ export const FAQ_ITEMS: FAQItem[] = [
   },
   {
     question: "Quais serviços a EvolvOut oferece para empresas angolanas?",
-    answer: "Oferecemos soluções completas para o crescimento digital: Marketing Digital, Desenvolvimento de Websites e Apps, Design e Audiovisual, e Hardware & Software personalizado. Criamos experiências reais e práticas adaptadas ao mercado angolano para negócios que desejam crescer no mundo digital.",
+    answer: "Trabalhamos com marketing digital, desenvolvimento de websites e aplicações, design e audiovisual, além da configuração de equipamentos, software e suporte tecnológico para empresas.",
     category: "Serviços"
   },
   {

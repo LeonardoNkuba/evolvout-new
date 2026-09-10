@@ -14,14 +14,14 @@ export default function SupportPage() {
     general: [
       {
         q: 'Como posso entrar em contacto com a EvolvOut?',
-        a: 'Você pode nos contactar através do formulário de contacto na página inicial, por email em contacto@evolvout.com, ou por WhatsApp no +244 945 367 487.',
+        a: 'Pode contactar-nos através do formulário na página inicial, por email em contacto@evolvout.com ou por WhatsApp no +244 945 367 487.',
       },
       {
         q: 'Qual é o tempo de resposta esperado?',
-        a: 'Respondemos a todas as enquiries dentro de 24 horas em dias úteis (segunda a sexta, 9h às 18h).',
+        a: 'As mensagens são atendidas durante o horário comercial, de segunda a sexta, das 9h às 18h.',
       },
       {
-        q: 'Vocês oferecem suporte em português?',
+        q: 'O suporte é prestado em português?',
         a: 'Sim! Oferecemos suporte completo em português angolano e português europeu.',
       },
     ],
@@ -202,7 +202,7 @@ export default function SupportPage() {
               Não encontrou a resposta?
             </h3>
             <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-              Nosso equipe está disponível para ajudar. Contacte-nos através de qualquer um dos canais acima ou use o formulário de contacto.
+              A nossa equipa está disponível para ajudar. Contacte-nos através de um dos canais acima ou utilize o formulário de contacto.
             </p>
             <Link
               href="/#contact"

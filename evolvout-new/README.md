@@ -1,229 +1,126 @@
-# EvolvOut - Modern Landing Page
+# EvolvOut
 
-## 🇦🇴 Transformando Ideias em Soluções Digitais Inteligentes
+Landing page institucional da EvolvOut, uma empresa angolana de tecnologia, design e estratégia digital.
 
-![EvolvOut Banner](https://img.shields.io/badge/EvolvOut-ONDE%20A%20MUDANÇA%20COMEÇA-00ff88?style=for-the-badge&logoColor=white)
-![Angola Tech](https://img.shields.io/badge/MADE%20IN-ANGOLA-FF0000?style=for-the-badge&logo=angola&logoColor=white)
-![Responsive](https://img.shields.io/badge/Responsive-Yes-08122c?style=for-the-badge&logo=responsive)
-![Modern Design](https://img.shields.io/badge/Design-Modern-00ff88?style=for-the-badge)
+Produção: [www.evolvout.com](https://www.evolvout.com)
 
-> Uma landing page moderna e interativa para a **EvolvOut**, empresa angolana de inovação, design, marketing e tecnologia. Criamos experiências reais e práticas para negócios que desejam crescer no mundo digital.
+## Funcionalidades
 
-## 🎨 Demonstração
+- Apresentação dos serviços e processo de trabalho
+- Portfólio com estudos de caso acessíveis
+- Formulário de contacto integrado à API da Resend
+- Protecção básica contra spam e abuso no formulário
+- Páginas de suporte, documentação, privacidade, termos e cookies
+- Metadados Open Graph e Twitter
+- Sitemap, robots.txt, manifesto e dados estruturados
+- Vercel Analytics e eventos de conversão
+- Interface responsiva e suporte a movimento reduzido
 
-![EvolvOut Preview](https://img.shields.io/badge/Preview-Live%20Demo-08122c?style=for-the-badge)
-🔗 **Demo Link**: (https://www.evolvout.com)
+## Tecnologias
 
-## ✨ Características Principais
+- Next.js 16 com App Router
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Framer Motion para animações pontuais
+- Radix UI
+- Lucide React
+- Vercel Analytics
 
-### 🎯 **Design Moderno Angolano**
-- 🎨 Paleta de cores exclusiva (`#08122c` + `#00ff88`)
-- 🌙 Modo escuro como padrão
-- 📱 Design 100% responsivo
-- 🌀 Animações suaves e interativas
+## Requisitos
 
-### 💡 **Seções Completas**
-1. **Hero Section** - Apresentação impactante com gradientes dinâmicos
-2. **Serviços** - 4 categorias de soluções digitais com hover effects
-3. **Estatísticas** - Números interativos que falam por nós
-4. **Sobre Nós** - Missão e valores da empresa
-5. **Depoimentos** - Carrossel automático de clientes satisfeitos
-6. **FAQ** - Acordeão interativo de perguntas frequentes
-7. **Contacto** - Formulário moderno com validação
-8. **Footer** - Informações completas com newsletter
+- Node.js 20 ou mais recente
+- npm
+- Uma conta Resend e um domínio de envio verificado para o formulário em produção
 
-### 🛠 **Tecnologias Utilizadas**
-
-
-⚛️ Next.js 13+ - Framework React com App Router
-
-📘 TypeScript - Tipagem estática para melhor desenvolvimento
-
-🎨 Tailwind CSS - Framework CSS utility-first
-
-✨ Framer Motion - Animações fluidas e interativas
-
-🎯 React Hook Form - Gerenciamento de formulários
-
-📦 Lucide React - Ícones modernos e leves
-
-## 🚀 Começando
-
-### Pré-requisitos
-- Navegador moderno (Chrome 90+, Firefox 88+, Safari 14+)
-- Editor de código (VS Code recomendado)
-- Git instalado
-
-### Instalação
+## Instalação
 
 ```bash
-# Clone o repositório
-git clone https://github.com/seu-usuario/evolvout.git
-
-# Entre no diretório
-cd evolvout-landing
-
-# Abra no VS Code
-code .
-
-# Execute com Live Server
-# Ou simplesmente abra index.html no navegador
+git clone <URL-DO-REPOSITORIO>
+cd evolvout-new/evolvout-new
+npm install
+cp .env.example .env.local
+npm run dev
 ```
 
-### Estrutura do Projeto
-```
-evolvout/
-├── 📁 app/                    # App Router (Next.js 13+)
-│   ├── 📄 layout.tsx         # Layout principal
-│   ├── 📄 page.tsx           # Página inicial
-│   └── 📁 components/        # Componentes da página
-├── 📁 components/            # Componentes reutilizáveis
-│   ├── 📁 ui/               # Componentes UI básicos
-│   ├── 📁 sections/         # Seções da landing page
-│   └── 📁 effects/          # Efeitos e animações
-├── 📁 lib/                  # Utilitários e helpers
-│   ├── 📄 utils.ts          # Funções utilitárias
-│   └── 📄 cn.ts             # clsx + tailwind-merge
-├── 📁 constants/            # Constantes e dados
-│   ├── 📄 theme.ts          # Cores e temas
-│   ├── 📄 features.ts       # Serviços e features
-│   ├── 📄 stats.ts          # Estatísticas
-│   ├── 📄 testimonials.ts   # Depoimentos
-│   └── 📄 faq.ts           # Perguntas frequentes
-├── 📁 public/               # Assets estáticos
-│   ├── 📁 images/          # Imagens otimizadas
-│   └── 📁 icons/           # Ícones e SVGs
-├── 📁 styles/              # Estilos globais
-│   └── 📄 globals.css      # CSS global e Tailwind
-├── tailwind.config.js      # Configuração do Tailwind
-├── tsconfig.json          # Configuração TypeScript
-├── next.config.js         # Configuração Next.js
-└── package.json           # Dependências do projeto
+A aplicação fica disponível em [http://localhost:3000](http://localhost:3000).
+
+## Variáveis de ambiente
+
+Crie `.env.local` a partir de `.env.example`:
+
+```env
+RESEND_API_KEY=your_resend_api_key_here
+CONTACT_EMAIL=contacto@evolvout.com
+CONTACT_FROM_EMAIL=noreply@evolvout.com
 ```
 
-## 🎨 Personalização
+- `RESEND_API_KEY`: chave utilizada para enviar mensagens.
+- `CONTACT_EMAIL`: endereço que recebe os pedidos enviados pelo site.
+- `CONTACT_FROM_EMAIL`: remetente verificado no Resend.
 
-### Cores da Marca
-```css
-:root {
-  --primary-dark: #08122c;      /* Azul marinho profundo */
-  --primary-accent: #00ff88;    /* Verde/Ciano elétrico */
-  --secondary-dark: #0a1a3a;    /* Azul secundário */
-  --light-bg: #f5f7fa;          /* Fundo claro */
-}
-```
+Consulte [EMAIL_SETUP.md](./EMAIL_SETUP.md) para a configuração detalhada do email.
 
-### Atualizar Conteúdo
-1. **Texto**: Edite diretamente no `index.html`
-2. **Imagens**: Substitua em `assets/images/`
-3. **Cores**: Modifique as variáveis CSS
-4. **Contactos**: Atualize no footer e seção de contacto
+## Comandos
 
-## 📱 Responsividade
-
-| Dispositivo | Breakpoint | Características |
-|------------|------------|-----------------|
-| 📱 Mobile | < 640px | Layout vertical, menus compactos |
-| 📟 Tablet | 640px - 1024px | Grid adaptável, tipografia média |
-| 💻 Desktop | > 1024px | Layout completo, animações totais |
-
-## ⚡ Performance
-
-![Performance](https://img.shields.io/badge/Performance-Optimized-00ff88?style=for-the-badge)
-- ⚡ Carregamento rápido (< 3s)
-- 🖼️ Imagens otimizadas
-- 📦 CSS/JS minificados (em produção)
-- 🔄 Lazy loading para imagens
-
-## ♿ Acessibilidade
-
-![Acessibilidade](https://img.shields.io/badge/Acessibilidade-WCAG%202.1%20AA-08122c?style=for-the-badge)
-- ✅ HTML semântico
-- ✅ Navegação por teclado
-- ✅ Contraste de cores adequado
-- ✅ ARIA labels implementados
-
-## 🚀 Deployment
-
-### Opções Simples
-
-1. **Netlify** (Recomendado)
 ```bash
-# Instale o CLI do Netlify
-npm install netlify-cli -g
-
-# Faça deploy
-netlify deploy
+npm run dev      # servidor de desenvolvimento
+npm run lint     # análise estática
+npm run build    # build de produção e validação TypeScript
+npm start        # inicia o build de produção
 ```
 
-2. **Vercel**
+## Estrutura principal
+
+```text
+app/
+  api/contact/       Endpoint do formulário
+  layout.tsx         Metadados, Analytics e dados estruturados
+  page.tsx           Composição da página principal
+  manifest.ts        Manifesto web
+  robots.ts          Regras para motores de pesquisa
+  sitemap.ts         Mapa do site
+components/
+  layout/            Cabeçalho e navegação
+  sections/          Secções da landing page
+  ui/                Componentes de interface reutilizáveis
+constants/           Conteúdo e configurações da página
+public/              Imagens optimizadas e identidade visual
+```
+
+## Actualização de conteúdo
+
+- Serviços: `constants/features.ts`
+- Portfólio: `constants/portfolio.ts`
+- FAQ: `constants/faq.ts`
+- Navegação: `constants/navigation.ts`
+- Contactos: `components/sections/Contact.tsx` e `components/sections/Footer.tsx`
+
+Ao adicionar um projecto ao portfólio, inclua uma imagem WebP optimizada, descrição, desafio, solução, destaques e um link público verificável.
+
+## Formulário de contacto
+
+O endpoint valida tipo, conteúdo e tamanho dos campos, escapa texto inserido no email, utiliza um honeypot e aplica limitação básica por endereço IP. Em ambientes serverless, a limitação em memória não substitui uma solução persistente como Vercel KV ou Upstash Redis.
+
+## Verificação antes de publicar
+
 ```bash
-# Instale o Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel
+npm run lint
+npm run build
 ```
 
-3. **GitHub Pages**
-- Push para o repositório
-- Settings → Pages → Source: main branch
+Antes de cada publicação, confirme também:
 
-## 📊 Estatísticas do Projeto
+- Contactos e links externos
+- Conteúdo e responsabilidade da EvolvOut em cada projecto
+- Variáveis de ambiente da Resend
+- Políticas legais aplicáveis ao negócio
+- Visualização em dispositivos móveis
 
-![GitHub repo size](https://img.shields.io/github/repo-size/seu-usuario/evolvout-landing?color=00ff88&style=for-the-badge)
-![GitHub last commit](https://img.shields.io/github/last-commit/seu-usuario/evolvout-landing?color=08122c&style=for-the-badge)
-![Lines of code](https://img.shields.io/tokei/lines/github/seu-usuario/evolvout-landing?color=00ff88&style=for-the-badge)
+## Deploy
 
-## 📞 Contacto da EvolvOut
+O projecto está preparado para a Vercel. Configure as variáveis de ambiente no projecto, faça o deploy e confirme o envio do formulário no domínio de produção.
 
-### Informações Empresariais
-- **📍 Localização**: Luanda, Angola
-- **📧 Email**: contacto@evolvout.com
-- **📞 Telefone**: +244 945 367 487
-- **🌐 Website**: www.evolvout.com
+## Direitos
 
-### Serviços Oferecidos
-- 🎯 Marketing Digital
-- 💻 Desenvolvimento Web & Apps
-- 🎨 Design & Audiovisual
-- ⚙️ Hardware & Software
-
-## 🤝 Contribuindo
-
-1. Fork o projeto
-2. Crie sua Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a Branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto é propriedade da **EvolvOut**. Todos os direitos reservados.
-
-## 🙏 Reconhecimentos
-
-- Design inspirado em [mungenstudio.framer.website](https://mungenstudio.framer.website/)
-- Ícones por [Font Awesome](https://fontawesome.com/)
-- Fontes por [Google Fonts](https://fonts.google.com/)
-- Avatares por [DiceBear](https://dicebear.com/)
-
----
-
-## 🎯 Missão da EvolvOut
-
-> "Transformamos ideias em soluções digitais inteligentes. Criamos experiências reais e práticas para negócios que desejam crescer e se adaptar ao novo mundo digital."
-
-**Para a nova geração angolana 🇦🇴**
-
----
-
-<div align="center">
-
-### ✨ Feito com ❤️ para o crescimento digital de Angola
-
-[![EvolvOut Logo](https://img.shields.io/badge/EVOLVOUT-ONDE%20A%20MUDANÇA%20COMEÇA-00ff88?style=for-the-badge&logo=star&logoColor=white)](https://github.com/seu-usuario/evolvout-landing)
-
-*"Inovação digital para o futuro de Angola"*
-
-</div>
+© EvolvOut. Todos os direitos reservados.

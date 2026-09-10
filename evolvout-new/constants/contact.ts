@@ -1,6 +1,6 @@
 /**
  * Contact constants
- * Define informações de contato da empresa
+ * Define informações de contacto da empresa
  */
 
 export interface ContactInfo {
@@ -14,19 +14,19 @@ export const CONTACT_INFO: ContactInfo[] = [
   {
     type: "email",
     label: "Email",
-    value: "contato@startuptech.com",
+    value: "contacto@evolvout.com",
     icon: "mail",
   },
   {
     type: "phone",
     label: "Telefone",
-    value: "+55 (11) 98765-4321",
+    value: "+244 945 367 487",
     icon: "phone",
   },
   {
     type: "location",
     label: "Localização",
-    value: "São Paulo, Brasil",
+    value: "Luanda, Angola",
     icon: "map-pin",
   },
 ] as const;

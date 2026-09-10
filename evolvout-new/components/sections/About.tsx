@@ -23,7 +23,7 @@ export function About({ className }: BaseComponentProps) {
       <section
           id="about"
           className={cn(
-              "relative min-h-screen flex items-center justify-center",
+              "relative flex items-center justify-center",
               "px-4 sm:px-6 lg:px-8",
               "pt-8 sm:pt-10 lg:pt-12 pb-12 sm:pb-16 lg:pb-20",
               "pointer-events-auto",
@@ -56,12 +56,11 @@ export function About({ className }: BaseComponentProps) {
             >
               <div className="relative w-full h-full max-h-[500px] lg:max-h-[600px]">
                 <Image
-                    src="/brain.png"
+                    src="/brain.webp"
                     alt="Inovação digital angolana - Transformando ideias em soluções"
                     width={600}
                     height={600}
                     className="w-full h-full object-contain"
-                    priority
                 />
               </div>
             </motion.div>
@@ -114,8 +113,8 @@ export function About({ className }: BaseComponentProps) {
                   transition={{ duration: 0.6, delay: 0.4 }}
                   className="text-gray-400 text-base sm:text-lg lg:text-xl leading-relaxed"
               >
-                A EvolvOut é uma empresa angolana de inovação, design, marketing e tecnologia.
-                Criamos experiências reais e práticas para negócios que desejam crescer e se adaptar ao novo mundo digital.
+                A EvolvOut é uma empresa angolana que une tecnologia, design e estratégia
+                para ajudar empresas e empreendedores a construir uma presença digital mais forte.
               </motion.p>
 
               {/* Features List */}
@@ -130,10 +129,10 @@ export function About({ className }: BaseComponentProps) {
                   <div className="mt-1 w-2 h-2 rounded-full bg-gradient-to-r from-emerald-500 to-lime-500 flex-shrink-0" />
                   <div>
                     <h3 className="text-white font-semibold text-lg mb-1">
-                      Soluções Digitais Inteligentes
+                      Soluções orientadas ao negócio
                     </h3>
                     <p className="text-gray-400 text-sm leading-relaxed">
-                      Transformamos ideias em soluções digitais inteligentes com tecnologia de ponta adaptada ao mercado angolano.
+                      Começamos pelo desafio do cliente e escolhemos a tecnologia adequada para resolvê-lo.
                     </p>
                   </div>
                 </div>
@@ -142,10 +141,10 @@ export function About({ className }: BaseComponentProps) {
                   <div className="mt-1 w-2 h-2 rounded-full bg-gradient-to-r from-emerald-500 to-lime-500 flex-shrink-0" />
                   <div>
                     <h3 className="text-white font-semibold text-lg mb-1">
-                      Experiência Prática e Real
+                      Experiência clara e funcional
                     </h3>
                     <p className="text-gray-400 text-sm leading-relaxed">
-                      Criamos experiências digitais reais e práticas que conectam marcas com o público angolano.
+                      Desenhamos interfaces simples de utilizar, adaptadas às necessidades do público angolano.
                     </p>
                   </div>
                 </div>
@@ -154,10 +153,10 @@ export function About({ className }: BaseComponentProps) {
                   <div className="mt-1 w-2 h-2 rounded-full bg-gradient-to-r from-emerald-500 to-lime-500 flex-shrink-0" />
                   <div>
                     <h3 className="text-white font-semibold text-lg mb-1">
-                      Resultados Comprovados em Angola
+                      Conhecimento do contexto local
                     </h3>
                     <p className="text-gray-400 text-sm leading-relaxed">
-                      Empresas atendidas em todo o país com soluções em marketing digital, desenvolvimento web, design e hardware/software.
+                      Trabalhamos a partir de Angola e consideramos a realidade, os canais e os hábitos do mercado local.
                     </p>
                   </div>
                 </div>

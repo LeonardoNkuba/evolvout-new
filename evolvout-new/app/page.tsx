@@ -1,23 +1,19 @@
-"use client";
-
 import { Header } from "@/components/layout";
 import { COLORS } from "@/constants/theme";
 import { Portfolio} from "@/components/sections/Portfolio";
 import { Hero } from "@/components/sections/Hero";
 import { Features } from "@/components/sections/Features";
-import { Testimonials } from "@/components/sections/Testimonials";
-import { Stats } from "@/components/sections/Stats";
 import { About } from "@/components/sections/About";
 import { FAQ } from "@/components/sections/FAQ";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
+import { Process } from "@/components/sections/Process";
 
 
 /**
 * Home Page
 *
 * Página principal da aplicação com:
-* - Efeito de fundo líquido animado (LiquidEther)
 * - Header com navegação
 * - Hero section com CTAs
 */
@@ -36,23 +32,20 @@ export default function Home() {
            </div>
          </div>
         
-         {/* Features Section - Sem LiquidEther */}
+         {/* Features Section */}
          <Features />
         
          {/* Portfolio Section */}
          <Portfolio />
-        
-         {/* Stats Section */}
-         <Stats />
+
+         {/* Process Section */}
+         <Process />
         
          {/* About Section */}
          <About />
         
          {/* FAQ Section */}
          <FAQ />
-        
-         {/* Testimonials Section */}
-         <Testimonials />
         
          {/* Contact Section */}
          <Contact />

@@ -1,144 +1,69 @@
-/**
- * Portfolio Card Component
- * Exibe um projeto individual do portfolio com imagem, description and tags
-* */
-
-"use client";
-
-import { motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import Image from "next/image";
 
+import { PORTFOLIO_CATEGORIES, type PortfolioProject } from "@/constants/portfolio";
 import { cn } from "@/lib/utils";
-import type { BaseComponentProps} from "@/types/components";
-import type { PortfolioProject} from "@/constants/portfolio";
+import type { BaseComponentProps } from "@/types/components";
 
 interface PortfolioCardProps extends BaseComponentProps {
-    project: PortfolioProject;
-    index: number;
+  project: PortfolioProject;
+  onViewCase: (project: PortfolioProject) => void;
 }
 
-/**
- * Card de projeto individual
- * */
-export function PortfolioCard({ project, index, className} : PortfolioCardProps) {
-    const containerVariants = {
-        hidden: {opacity: 0, y: 20},
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 0.5,
-                delay: index * 0.1,
-            }
-        }
-    };
+export function PortfolioCard({ project, onViewCase, className }: PortfolioCardProps) {
+  const category = PORTFOLIO_CATEGORIES.find((item) => item.id === project.category)?.label ?? project.category;
 
-    const hoverVariants = {
-        initial: { scale: 1},
-        hover: {scale: 1.02},
-    };
+  return (
+    <article className={cn("group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-slate-900/50 transition-colors duration-200 hover:border-emerald-400/30", className)}>
+      <div className="relative aspect-[16/10] overflow-hidden bg-slate-900">
+        <Image
+          src={project.image}
+          alt={`Projecto ${project.title}`}
+          fill
+          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+          className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" aria-hidden="true" />
+        <span className="absolute right-4 top-4 rounded-full bg-emerald-400 px-3 py-1 text-xs font-semibold text-slate-950">
+          {category}
+        </span>
+      </div>
 
-    return (
-        <motion.div
-            variants = {containerVariants}
-            whileHover = "hover"
-            initial = "hidden"
-            whileInView = "visible"
-            viewport={{once: true, margin: "-100px"}}
-            className = {cn("group h-full", className)}
+      <div className="flex flex-1 flex-col p-6">
+        <h3 className="text-xl font-bold text-white">{project.title}</h3>
+        <p className="mt-2 text-sm leading-relaxed text-slate-400">{project.shortDescription}</p>
+
+        <div className="mt-5 flex flex-wrap gap-2">
+          {project.tags.slice(0, 3).map((tag) => (
+            <span key={tag} className="rounded-lg bg-emerald-400/10 px-2.5 py-1 text-xs font-medium text-emerald-300">
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-auto flex items-center gap-3 border-t border-white/10 pt-5">
+          <button
+            type="button"
+            onClick={() => onViewCase(project)}
+            className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-white/15 px-3 py-2.5 text-sm font-semibold text-white transition-colors hover:border-emerald-400/40 hover:bg-white/5"
+          >
+            Ver caso
+            <ArrowRight className="size-4" />
+          </button>
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 rounded-lg bg-emerald-400 px-3 py-2.5 text-sm font-semibold text-slate-950 transition-colors hover:bg-emerald-300"
+              aria-label={`${project.linkLabel ?? "Abrir projecto"}: ${project.title}`}
             >
-            <motion.div
-                variants = {hoverVariants}
-                className = "relative h-full rounded-2xl overflow-hidden border border-white/10 bg-slate-900/50"
-            >
-                {/* Image Container */}
-                <div className = "relative h-64 overflow-hidden bg-linear-to-br from-slate-800 to-slate-900">
-                    {project.image ? (
-                       <Image
-                           src={project.image}
-                           alt={project.title}
-                           fill
-                           className = "w-full h-full object-cover group-hover:sclae-110 transition-transform duration-500"
-                           priority={false}
-                       />
-                    ) : (
-                        <div className="w-full h-full flex items-center justofy-center">
-                            <div className="text-4xl font-bold text-slate-600">
-                                {project.title.charAt(0)}
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Category base */}
-                    <div className="absolute top-4 right-4">
-                        <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-green-500 text-slate-950">
-                            {project.category.charAt(0).toUpperCase() + project.category.slice(1)}
-                        </span>
-                    </div>
-
-                    {/* Overlay on Hover */}
-                    <div className = "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-linear-to-br from-green-500/20 to-green-600/40"/>
-                </div>
-
-                {/* Content Container */}
-                <div className="p-6">
-                    {/* Title */}
-                    <h3 className="text-xl font-bold mb-2 text-white line-clamp-2">
-                        {project.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-sm text-slate-400 mb-4 line-clamp-2">
-                        {project.description}
-                    </p>
-
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                        {project.tags.slice(0, 3).map((tag) => (
-                            <span
-                                key={tag}
-                                className="px-2 py-1 text-xs font-medium rounded-lg bg-green-500/20 text-green-400"
-                            >
-                                {tag}
-                            </span>
-                        ))}
-                        {project.tags.length > 3 && (
-                            <span className="px-2 py-1 text-xs font-medium rounded-lg bg-green-500/20 text-green-400">
-                                +{project.tags.length - 3} more
-                            </span>
-                        )}
-                    </div>
-
-                    {/* Links */}
-                    <div className="flex items-center gap-3 pt-4 border-t border-white/10">
-                        {project.link && (
-                            <a
-                                href={project.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex-1 flex items-center justify-center gap-2 py-2 rounded-lg bg-green-500 text-slate-950 font-medium transition-all hover:shadow-lg"
-                                title="Ver projeto ao vivo"
-                            >
-                                <ExternalLink size={16}/>
-                                <span>Ver Projeto</span>
-                            </a>
-                        )}
-                        {project.github && (
-                            <a 
-                                href={project.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center justify-center py-2 rounded-lg bg-green-500/15 text-green-400 transition-all hover:bg-green-500/25"
-                                title="Ver código no GitHub"
-                            >
-                                <Github size={16}/>
-                            </a>
-                        )}
-                    </div>
-                </div>
-            </motion.div>
-        </motion.div>
-
-    );
+              <ExternalLink className="size-4" />
+              <span className="hidden sm:inline">Abrir</span>
+            </a>
+          )}
+        </div>
+      </div>
+    </article>
+  );
 }

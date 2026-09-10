@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { track } from "@vercel/analytics";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -38,11 +39,11 @@ export function Hero({ className }: HeroProps) {
           {...HERO_TITLE_ANIMATION}
           className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight mb-6"
         >
-          <span className="text-white">EvolvOut.</span>
+          <span className="text-white">Tecnologia para fazer</span>
           <br />
           <span className="bg-gradient-to-r from-green-300 via-emerald-400 to-green-500 bg-clip-text text-transparent">
-  Onde a Mudança Começa.
-</span>
+            negócios evoluírem.
+          </span>
         </motion.h1>
 
         {/* Subtitle */}
@@ -50,8 +51,8 @@ export function Hero({ className }: HeroProps) {
           {...HERO_SUBTITLE_ANIMATION}
           className="text-lg sm:text-xl text-white/70 max-w-2xl mx-auto mb-12"
         >
-          Transformamos ideias em soluções digitais inteligentes.
-          A empresa angolana de inovação, design, marketing e tecnologia.
+          Criamos websites, sistemas e marcas digitais para empresas e empreendedores
+          que querem crescer em Angola.
         </motion.p>
 
         {/* CTAs */}
@@ -71,6 +72,7 @@ export function Hero({ className }: HeroProps) {
               href="#contact"
               onClick={(e) => {
                 e.preventDefault();
+                track("cta_click", { location: "hero", action: "request_quote" });
                 const target = document.querySelector('#contact');
                 if (target) {
                   target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -83,7 +85,7 @@ export function Hero({ className }: HeroProps) {
                 e.currentTarget.style.background = COLORS.gradient.button;
               }}
             >
-              Começar Agora
+              Solicitar orçamento
             </a>
           </Button>
           <Button
@@ -93,16 +95,17 @@ export function Hero({ className }: HeroProps) {
             className="rounded-full! px-8 py-6 text-base font-semibold bg-white/10! backdrop-blur-sm border-white/20! text-white hover:bg-white/20! hover:text-white! transition-all duration-200"
           >
             <a 
-              href="#services"
+              href="#portfolio"
               onClick={(e) => {
                 e.preventDefault();
-                const target = document.querySelector('#services');
+                track("cta_click", { location: "hero", action: "view_portfolio" });
+                const target = document.querySelector('#portfolio');
                 if (target) {
                   target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
             >
-              Saiba Mais
+              Ver projetos
             </a>
           </Button>
         </motion.div>

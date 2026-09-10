@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { cn } from '@/lib/utils';
 import { COLORS } from '@/constants/theme';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
@@ -69,7 +68,7 @@ export default function TermsPage() {
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-white mt-8 mb-4">5. Isenção de Responsabilidade</h2>
               <p className="text-gray-300 leading-relaxed mb-4">
-                O website é fornecido "tal como está" sem garantias de qualquer tipo. A EvolvOut não se responsabiliza por danos diretos ou indiretos resultantes do uso ou incapacidade de uso do website.
+                O website é fornecido &quot;tal como está&quot; sem garantias de qualquer tipo. A EvolvOut não se responsabiliza por danos diretos ou indiretos resultantes do uso ou incapacidade de uso do website.
               </p>
             </section>
 

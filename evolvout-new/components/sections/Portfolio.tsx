@@ -1,142 +1,97 @@
-/**
-* Portfolio Section Component
-* Exibe uma galeria de projetos com filtros por categoria
-*/
-
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { CheckCircle2, ExternalLink, X } from "lucide-react";
+import { track } from "@vercel/analytics";
 
+import { PORTFOLIO_PROJECTS, type PortfolioProject } from "@/constants/portfolio";
 import { cn } from "@/lib/utils";
+import type { BaseComponentProps } from "@/types/components";
 import { SectionBadge } from "@/components/ui/SectionBadge";
 import { PortfolioCard } from "./PortfolioCard";
-import {
- PORTFOLIO_PROJECTS,
- PORTFOLIO_CATEGORIES,
-} from "@/constants/portfolio";
-import type { BaseComponentProps } from "@/types/components";
 
-type PortfolioProps = BaseComponentProps;
+export function Portfolio({ className }: BaseComponentProps) {
+  const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
-/**
-* Portfolio Section
-*
-* Seção de portfólio com:
-* - Galeria de projetos
-* - Filtros por categoria
-* - Animações suaves
-* - Links para projetos e GitHub
-*/
-export function Portfolio({ className }: PortfolioProps) {
- const [activeCategory, setActiveCategory] = useState<string>("all");
+  useEffect(() => {
+    if (!selectedProject) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
+    const closeOnEscape = (event: KeyboardEvent) => event.key === "Escape" && setSelectedProject(null);
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [selectedProject]);
 
- // Filter projects based on active category
- const filteredProjects =
-   activeCategory === "all"
-     ? PORTFOLIO_PROJECTS
-     : PORTFOLIO_PROJECTS.filter((project) => project.category === activeCategory);
+  return (
+    <section id="portfolio" className={cn("relative px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24", className)}>
+      <div className="mx-auto max-w-7xl">
+        <div className="mx-auto mb-12 max-w-3xl text-center">
+          <SectionBadge label="Portfólio" />
+          <h2 className="mt-6 text-4xl font-bold text-white sm:text-5xl lg:text-6xl">Projectos em destaque</h2>
+          <p className="mt-5 text-lg leading-relaxed text-slate-400">
+            Explore soluções desenvolvidas para comércio, educação, recrutamento, turismo e empreendedorismo.
+          </p>
+        </div>
 
- return (
-   <section
-     id="portfolio"
-     className={cn(
-       "relative py-20 px-4 sm:px-6 lg:px-8 pointer-events-auto",
-       className
-     )}
-   >
-     <div className="max-w-7xl mx-auto">
-       {/* Header */}
-       <motion.div
-         initial={{ opacity: 0, y: 20 }}
-         whileInView={{ opacity: 1, y: 0 }}
-         viewport={{ once: true, margin: "-100px" }}
-         transition={{ duration: 0.5 }}
-         className="text-center mb-16"
-       >
-         <SectionBadge label="Portfólio" />
-         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mt-6 mb-4">
-           Projetos em Destaque
-         </h2>
-         <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-           Conheça alguns dos projetos que transformaram negócios e entregaram
-           resultados reais para nossos clientes
-         </p>
-       </motion.div>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {PORTFOLIO_PROJECTS.map((project) => (
+            <PortfolioCard key={project.id} project={project} onViewCase={(item) => { track("portfolio_case_open", { project: item.id }); setSelectedProject(item); }} />
+          ))}
+        </div>
 
-       {/* Category Filter */}
-       <motion.div
-         className="flex flex-wrap justify-center gap-3 mb-12"
-         initial={{ opacity: 0 }}
-         whileInView={{ opacity: 1 }}
-         viewport={{ once: true, margin: "-100px" }}
-       >
-         {PORTFOLIO_CATEGORIES.map((category) => (
-           <motion.button
-             key={category.id}
-             onClick={() => setActiveCategory(category.id)}
-             whileHover={{ scale: 1.05 }}
-             whileTap={{ scale: 0.95 }}
-             className={cn(
-               "px-6 py-2 rounded-full font-medium transition-all duration-300",
-               activeCategory === category.id
-                 ? "bg-green-500 text-white shadow-lg"
-                 : "border border-slate-600 text-slate-400 hover:text-white"
-             )}
-           >
-             {category.label}
-           </motion.button>
-         ))}
-       </motion.div>
+        <div className="mt-12 text-center">
+          <p className="mb-5 text-slate-400">Tem um desafio semelhante?</p>
+          <a href="#contact" className="inline-flex rounded-full bg-emerald-400 px-8 py-3 font-semibold text-slate-950 transition-colors hover:bg-emerald-300">
+            Falar sobre o meu projecto
+          </a>
+        </div>
+      </div>
 
-       {/* Projects Grid */}
-       <motion.div
-         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8"
-         initial={{ opacity: 0 }}
-         whileInView={{ opacity: 1 }}
-         viewport={{ once: true, margin: "-100px" }}
-       >
-         {filteredProjects.map((project, index) => (
-           <PortfolioCard
-             key={project.id}
-             project={project}
-             index={index}
-           />
-         ))}
-       </motion.div>
+      {selectedProject && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
+          role="presentation"
+          onMouseDown={(event) => event.target === event.currentTarget && setSelectedProject(null)}
+        >
+          <div role="dialog" aria-modal="true" aria-labelledby="case-title" className="max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl border border-white/10 bg-slate-950 p-6 shadow-2xl sm:p-8">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <span className="text-sm font-semibold text-emerald-400">Estudo de caso</span>
+                <h3 id="case-title" className="mt-2 text-2xl font-bold text-white sm:text-3xl">{selectedProject.title}</h3>
+                <p className="mt-3 leading-relaxed text-slate-400">{selectedProject.description}</p>
+              </div>
+              <button ref={closeButtonRef} type="button" onClick={() => setSelectedProject(null)} className="shrink-0 rounded-full border border-white/10 p-2 text-white transition-colors hover:bg-white/10" aria-label="Fechar estudo de caso">
+                <X className="size-5" />
+              </button>
+            </div>
 
-       {/* Empty State */}
-       {filteredProjects.length === 0 && (
-         <motion.div
-           className="text-center py-12"
-           initial={{ opacity: 0 }}
-           whileInView={{ opacity: 1 }}
-           viewport={{ once: true, margin: "-100px" }}
-         >
-           <p className="text-slate-400 text-lg">
-             Nenhum projeto encontrado nesta categoria
-           </p>
-         </motion.div>
-       )}
+            <div className="mt-8 grid gap-6 sm:grid-cols-2">
+              <div><h4 className="font-semibold text-white">Desafio</h4><p className="mt-2 leading-relaxed text-slate-400">{selectedProject.details.challenge}</p></div>
+              <div><h4 className="font-semibold text-white">Solução</h4><p className="mt-2 leading-relaxed text-slate-400">{selectedProject.details.solution}</p></div>
+            </div>
 
-       {/* CTA Section */}
-       <motion.div
-         className="mt-16 text-center"
-         initial={{ opacity: 0 }}
-         whileInView={{ opacity: 1 }}
-         viewport={{ once: true, margin: "-100px" }}
-       >
-         <p className="text-slate-400 mb-6">
-           Quer transformar seu próximo projeto?
-         </p>
-         <a
-           href="#contact"
-           className="inline-block px-8 py-3 rounded-full font-semibold bg-green-500 text-slate-950 transition-all duration-300 hover:scale-105 hover:shadow-lg"
-         >
-           Vamos Conversar
-         </a>
-       </motion.div>
-     </div>
-   </section>
- );
+            <div className="mt-8 border-t border-white/10 pt-6">
+              <h4 className="font-semibold text-white">Principais destaques</h4>
+              <ul className="mt-4 space-y-3">
+                {selectedProject.details.results.map((result) => (
+                  <li key={result} className="flex gap-3 text-slate-300"><CheckCircle2 className="mt-0.5 size-5 shrink-0 text-emerald-400" />{result}</li>
+                ))}
+              </ul>
+            </div>
+
+            {selectedProject.link && (
+              <a href={selectedProject.link} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-2 rounded-full bg-emerald-400 px-6 py-3 font-semibold text-slate-950 transition-colors hover:bg-emerald-300">
+                {selectedProject.linkLabel ?? "Abrir projecto"}<ExternalLink className="size-4" />
+              </a>
+            )}
+          </div>
+        </div>
+      )}
+    </section>
+  );
 }

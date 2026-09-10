@@ -1,9 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
-import { ElectricBorder } from "@/components/effects";
 import { COLORS } from "@/constants/theme";
 import type { Service } from "@/constants/features";
 
@@ -16,29 +14,18 @@ interface ServiceCardProps {
 /**
  * ServiceCard Component
  * 
- * Card individual de serviço com ElectricBorder animado
+ * Card individual de serviço
  * Garante altura uniforme entre todos os cards
  */
 export function ServiceCard({ service, index, className }: ServiceCardProps) {
   const Icon = service.icon;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.5, delay: 0.5 + index * 0.05 }}
+    <div
       className={cn("h-full", className)}
+      style={{ animationDelay: `${index * 50}ms` }}
     >
-      <ElectricBorder
-        color="#00ff88"
-        speed={1}
-        chaos={0.5}
-        thickness={2}
-        style={{ borderRadius: 16 }}
-        className="h-full"
-      >
-        <Card className="group bg-black/40 backdrop-blur-sm hover:bg-black/50 transition-all duration-300 cursor-pointer h-full border-0 flex flex-col min-h-[140px]">
+        <Card className="group bg-white/[0.035] hover:bg-white/[0.06] transition-colors duration-200 h-full border border-white/10 hover:border-emerald-400/30 flex flex-col min-h-[140px]">
           <CardContent className="p-4 flex-1 flex flex-col">
             <div className="flex items-start gap-3">
               <div
@@ -62,8 +49,7 @@ export function ServiceCard({ service, index, className }: ServiceCardProps) {
             </div>
           </CardContent>
         </Card>
-      </ElectricBorder>
-    </motion.div>
+    </div>
   );
 }
 

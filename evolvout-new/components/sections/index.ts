@@ -7,6 +7,5 @@ export { Footer } from './Footer';
 export { Hero } from './Hero';
 export { Portfolio } from './Portfolio';
 export { PortfolioCard } from './PortfolioCard';
+export { Process } from './Process';
 export { ServiceCard } from './ServiceCard';
-export { Stats } from './Stats';
-export { Testimonials } from './Testimonials';

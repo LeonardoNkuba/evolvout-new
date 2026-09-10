@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { cn } from '@/lib/utils';
 import { COLORS } from '@/constants/theme';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
@@ -58,7 +57,7 @@ export default function CookiesPage() {
                 Alguns dos nossos parceiros podem usar cookies para análise e publicidade. Isso inclui:
               </p>
               <ul className="list-disc pl-6 text-gray-300 space-y-2 mb-4">
-                <li>Google Analytics - para análise de tráfego</li>
+                <li>Vercel Analytics — para análise agregada de tráfego e desempenho</li>
                 <li>Redes sociais - para integração e publicidade</li>
                 <li>Provedores de publicidade - para otimização de anúncios</li>
               </ul>
